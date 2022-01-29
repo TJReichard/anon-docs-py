@@ -5,12 +5,12 @@ import csv
 
 
 def startup():
-    document = Document('anon-docs-py\\testdoc.docx')
+    document = Document('testdoc.docx')
 
 
     result = [p.text for p in document.paragraphs]
 
-    with open('anon-docs-py\\nameslist.csv', newline='', encoding='utf-8') as csvfile:
+    with open('nameslist.csv', newline='', encoding='utf-8') as csvfile:
         namesList = csv.reader(csvfile, delimiter=',', quotechar='|')
         
         cleanNamesList = []
@@ -57,8 +57,13 @@ def end(final):
             pass
     # swap change and print to save as document
     # print(finalText)
-    filename = tk.filedialog.asksaveasfilename(defaultextension=".docx")
-    finishedDocument.save(filename)   
+    try:
+        filename = tk.filedialog.asksaveasfilename(defaultextension=".docx")
+        finishedDocument.save(filename)
+        print(f"succesfully saved {filename}")
+    except: 
+        print("you broke something")   
+
 
 # startup()
 
