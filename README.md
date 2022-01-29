@@ -1,6 +1,6 @@
 # anon-docs-py
 
-small program do delete whichever words from docx files
+small program to delete whichever words from a csv list in a docx files
 
 
 - ~~todo: add source document through gui~~
