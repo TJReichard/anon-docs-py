@@ -1,20 +1,25 @@
-from pydoc import Doc
-from tkinter import N
+from tkinter import Label
+import tkinter as tk
 from docx import Document
 import csv
 
-document = Document('testdoc.docx')
+
+def startup():
+    document = Document('anon-docs-py\\testdoc.docx')
 
 
-result = [p.text for p in document.paragraphs]
+    result = [p.text for p in document.paragraphs]
 
-with open('nameslist.csv', newline='', encoding='utf-8') as csvfile:
-    namesList = csv.reader(csvfile, delimiter=',', quotechar='|')
+    with open('anon-docs-py\\nameslist.csv', newline='', encoding='utf-8') as csvfile:
+        namesList = csv.reader(csvfile, delimiter=',', quotechar='|')
+        
+        cleanNamesList = []
+        for row in namesList:
+            cleanNamesList.append(row[3].strip('""'))
+            cleanNamesList.append(row[4].strip('""'))
     
-    cleanNamesList = []
-    for row in namesList:
-        cleanNamesList.append(row[3].strip('""'))
-        cleanNamesList.append(row[4].strip('""'))
+    clean(result,cleanNamesList, 0)
+
 
 def clean(text, cleanNamesList, run):
     cleaned = Document()
@@ -45,12 +50,44 @@ def end(final):
             if final[idx] == final[idx+1]:
                 pass
             else:
-                finishedDocument.add_paragraph(f)
-                # finalText += f + '\n'
+                #swap to create Doc instead of just string
+                # finishedDocument.add_paragraph(f)
+                finalText += f + '\n'
         except:
             pass
+    # swap change and print to save as document
+    # finishedDocument.save('anon-docs-py\\newandanonDoc.docx')   
+    print(finalText)
 
-    finishedDocument.save('newandanonDoc.docx')   
-    # print(finalText)
+# startup()
 
-clean(result,cleanNamesList, 0)
+#start tkinter 
+root = tk.Tk()
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+canvas = tk.Canvas(root)
+canvas.grid(columnspan=6, rowspan=7)
+
+#outer layers
+top_layer= tk.Label(root)
+top_layer.grid(columnspan=6, column=0, row=0)
+btm_layer = tk.Label(root)
+btm_layer.grid(columnspan=6, column=0, row=7)
+left_layer = tk.Label(root)
+left_layer.grid(rowspan=7, column=0, row=0)
+right_layer = tk.Label(root)
+right_layer.grid(rowspan=7, column=5, row=0)
+
+#url entry box
+text_line = tk.Entry(root, width=45)
+text_line.grid(columnspan=3, column=2, row=2, sticky="w", padx=20, pady=20)
+#url entry box instruction
+label_text= tk.StringVar()
+label_text.set("Url:")
+label_info=Label(root, textvariable=label_text)
+label_info.grid(column=1, row=2)
+
+#create qr button
+create_btn = tk.Button(root, command=lambda:startup(), text="Erstellen", height=2, width=15, pady=5)
+create_btn.grid(columnspan=2, column=2, row=3)
+root.mainloop()
