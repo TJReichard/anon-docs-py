@@ -1,4 +1,3 @@
-from email import message
 from tkinter import Label, messagebox, Scale, StringVar, filedialog
 import tkinter as tk
 from docx import Document
