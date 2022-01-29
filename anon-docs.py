@@ -1,4 +1,4 @@
-from tkinter import Label
+from tkinter import Label, Scale, StringVar, filedialog
 import tkinter as tk
 from docx import Document
 import csv
@@ -51,13 +51,14 @@ def end(final):
                 pass
             else:
                 #swap to create Doc instead of just string
-                # finishedDocument.add_paragraph(f)
-                finalText += f + '\n'
+                finishedDocument.add_paragraph(f)
+                # finalText += f + '\n'
         except:
             pass
     # swap change and print to save as document
-    # finishedDocument.save('anon-docs-py\\newandanonDoc.docx')   
-    print(finalText)
+    # print(finalText)
+    filename = tk.filedialog.asksaveasfilename(defaultextension=".docx")
+    finishedDocument.save(filename)   
 
 # startup()
 
@@ -87,7 +88,9 @@ label_text.set("Url:")
 label_info=Label(root, textvariable=label_text)
 label_info.grid(column=1, row=2)
 
-#create qr button
-create_btn = tk.Button(root, command=lambda:startup(), text="Erstellen", height=2, width=15, pady=5)
+#clean doc button
+create_btn = tk.Button(root, command=lambda:startup(), text="Clean and Save", height=2, width=15, pady=5)
 create_btn.grid(columnspan=2, column=2, row=3)
+
+
 root.mainloop()
