@@ -9,6 +9,6 @@ small program to delete whichever words from a csv list in a docx files
 - import data from csv
   - ~~todo: add file selection in gui~~
   - todo: add parameter specification in gui
-  - todo: add logic to change csv data during runtime after preview instead of hardcode
+  - todo: dynamic preview???
     
 eventually refactor and prettify gui
