@@ -1,7 +1,7 @@
 # anon-docs-py
 
 small program to delete whichever words from a csv list in a docx files
-
+as its made for specific csv-lists from a specific source, key are hardcoded. Might eventually change to dynamic choosing of keys in guy.
 
 - ~~todo: add source document through gui~~
 - todo: add preview after cleaning before saving
