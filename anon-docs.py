@@ -57,14 +57,25 @@ def prepData(document):
 
             #make list out of dict
             #todo: eventually change to dynamic function that appends however many keys to list in extra function
-            #needs refactoring when its not just names anymore 
+            #needs refactoring when its not just names anymore or change dict Keys to the ones that should be targeted
             clean_names_list = []
             for row in names_list:
-                clean_names_list.append(row['Vorname'])
-                clean_names_list.append(row['Nachname'])
+                clean_names_list.append(row['Vorname'].strip(' '))
+                clean_names_list.append(row['Nachname'].strip(' '))
+
+            for name in clean_names_list:
+                if ' ' in name:
+                    x = name.split(' ')
+
+                    for sub in x:
+                        if not sub.islower():
+                            clean_names_list.append(sub)
+                else: pass
+
+            names_set = set(clean_names_list)
         
         #passes the current run for recursion exit in clean()
-        clean(result,clean_names_list, 0)
+        clean(result,names_set, 0)
     except:
         tk.messagebox.showerror(title="Wrong Format", message="Please choose .csv")
 
