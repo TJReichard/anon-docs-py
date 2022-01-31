@@ -12,3 +12,12 @@ as its made for specific csv-lists from a specific source, key are hardcoded. Mi
   - todo: dynamic preview???
     
 eventually refactor and prettify gui
+
+To Use:
+- Prepare docx:
+  - search and replace all soft returns (^l) with carriage returns (^p)
+- Prepare CSV
+  - Make sure all entries to be deleted from the document are present
+  - names with hyphen will be considered one name, names with spaces will be considered two
+
+All additional formatting will be lost
