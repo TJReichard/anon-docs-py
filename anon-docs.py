@@ -63,6 +63,8 @@ def prepData(document):
                 clean_names_list.append(row['Vorname'].strip(' '))
                 clean_names_list.append(row['Nachname'].strip(' '))
 
+
+            #get composit names split with space as single names
             for name in clean_names_list:
                 if ' ' in name:
                     x = name.split(' ')
