@@ -10,7 +10,9 @@ as its made for specific csv-lists from a specific source, key are hardcoded. Mi
   - ~~todo: add file selection in gui~~
   - todo: add parameter specification in gui
   - todo: dynamic preview???
-    
+  - todo: add formatting options in gui???
+
+
 eventually refactor and prettify gui
 
 To Use:
@@ -19,5 +21,9 @@ To Use:
 - Prepare CSV
   - Make sure all entries to be deleted from the document are present
   - names with hyphen will be considered one name, names with spaces will be considered two
+- Prepare Code
+  - Change parameters from csv if necessary in prepData()
+  - Change final document formatting if a different style is wanted in end() 
+
 
 All additional formatting will be lost
