@@ -1,6 +1,7 @@
 from tkinter import Label, messagebox, Scale, StringVar, filedialog
 import tkinter as tk
 from docx import Document
+from docx.shared import Pt
 import csv
 
 
@@ -105,6 +106,15 @@ def clean(text, clean_names_list, run):
 #clean duplicate entries from list due to first- lastname idx issue, create doc and save doc
 def end(final):
     finished_document = Document()
+
+    #final document styling
+    style = finished_document.styles['Normal']
+    format = style.paragraph_format
+    format.space_after = Pt(0)
+    font = style.font
+    font.name = 'Arial'
+    font.size = Pt(11)
+    
     for idx, f in enumerate(final):
         try:
             if final[idx] == final[idx+1]:
